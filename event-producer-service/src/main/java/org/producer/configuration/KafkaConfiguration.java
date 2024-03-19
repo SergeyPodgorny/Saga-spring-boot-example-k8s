@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.producer.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
