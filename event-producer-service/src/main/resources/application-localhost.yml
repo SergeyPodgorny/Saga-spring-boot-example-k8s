@@ -22,8 +22,8 @@ server:
   port: 8084
 
 variables:
-  kafka:
-    port: 9092
+kafka:
+  bootstrap_address: localhost:9092
 
 logging:
   level:
