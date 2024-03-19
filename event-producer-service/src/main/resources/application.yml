@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: cart-service
+  profiles:
+    active: localhost
+server:
+  error:
+    include-message: always
