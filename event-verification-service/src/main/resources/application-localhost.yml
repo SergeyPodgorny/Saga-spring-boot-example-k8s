@@ -18,8 +18,8 @@ spring:
 
 server:
   servlet:
-    context-path: /produce
-  port: 8084
+    context-path: /consume
+  port: 8085
 
 variables:
   kafka:
