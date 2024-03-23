@@ -38,8 +38,6 @@ public class EventService {
 
     }
 
-
-
     private void sendMessage(String topicName, EventHttpRequestDto eventDto) {
         var jsonEventDto = mutateToJson(eventDto);
         kafkaTemplate.send(topicName, jsonEventDto);
