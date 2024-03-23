@@ -1,6 +1,6 @@
 package org.producer.controller;
 
-import org.producer.dto.EventDto;
+import org.producer.dto.EventHttpRequestDto;
 import org.producer.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class EventController {
     }
 
     @PostMapping("/v1/process")
-    public void precessEvent(@RequestBody EventDto eventDto){
+    public void precessEvent(@RequestBody EventHttpRequestDto eventDto){
         eventService.processEvent(eventDto);
     }
 
