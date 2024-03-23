@@ -1,5 +1,6 @@
 package org.producer.service;
 
+import org.producer.dto.EventDto;
 import org.producer.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -18,7 +19,9 @@ public class EventService {
     }
 
 
+    public void processEvent(EventDto eventDto){
 
+    }
 
 
 
