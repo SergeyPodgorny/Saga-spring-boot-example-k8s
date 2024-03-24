@@ -1,6 +1,7 @@
 package org.consumer.dto;
 
 import lombok.*;
+import org.consumer.entity.Event;
 
 @Getter
 @Setter
@@ -12,4 +13,10 @@ public class EventRequestKafkaDto {
     private Boolean isTransactionalFailing;
     private String timeOfAttempt;
 
+
+    public EventRequestKafkaDto(Event event) {
+        variousPayload= event.getVariousPayload();
+        isTransactionalFailing = event.getIsTransactionalFailing();
+        timeOfAttempt = event.getTimeOfAttempt();
+    }
 }
