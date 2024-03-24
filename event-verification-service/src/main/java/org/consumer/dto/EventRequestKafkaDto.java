@@ -2,8 +2,6 @@ package org.consumer.dto;
 
 import lombok.*;
 
-import java.time.ZonedDateTime;
-
 @Getter
 @Setter
 @NoArgsConstructor

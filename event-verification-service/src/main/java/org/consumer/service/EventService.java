@@ -23,7 +23,7 @@ public class EventService {
     public void eventMessageListener(String event)  {
 
         EventRequestKafkaDto restoredObject;
-
+        log.info(event);
         try {
             restoredObject = objectMapper.readValue(event, EventRequestKafkaDto.class);
             log.info(restoredObject.toString());

@@ -10,5 +10,5 @@ import lombok.*;
 @ToString
 public class EventHttpRequestDto {
     private String variousPayload;
-    private Boolean isTransactionalFailing;
+    private String isTransactionalFailing;
 }
