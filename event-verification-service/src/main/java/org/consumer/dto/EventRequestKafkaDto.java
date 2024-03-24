@@ -12,6 +12,6 @@ import java.time.ZonedDateTime;
 public class EventRequestKafkaDto {
     private String variousPayload;
     private Boolean isTransactionalFailing;
-    private ZonedDateTime timeOfAttempt;
+    private String timeOfAttempt;
 
 }
