@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cart-service
+    name: consumer-service
   profiles:
     active: localhost
 server:

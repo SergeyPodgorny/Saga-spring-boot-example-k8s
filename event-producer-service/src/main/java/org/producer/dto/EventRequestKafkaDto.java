@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 @Getter
@@ -16,7 +17,9 @@ public class EventRequestKafkaDto extends EventHttpRequestDto{
     public EventRequestKafkaDto(EventHttpRequestDto eventHttpRequestDto) {
         super.setVariousPayload(eventHttpRequestDto.getVariousPayload());
         super.setIsTransactionalFailing(eventHttpRequestDto.getIsTransactionalFailing());
-        this.timeOfAttempt = ZonedDateTime.now(ZoneId.of("UTC"));
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        this.timeOfAttempt = ZonedDateTime.of(localDateTime, ZoneId.of("UTC"));
     }
 
 }
