@@ -28,20 +28,17 @@ public class EventService {
     }
 
     public void processEvent(EventHttpRequestDto eventDto){
-
-        var evenRequestKafkaDto = new EventRequestKafkaDto();
-        evenRequestKafkaDto.setTimeOfAttempt(ZonedDateTime.now());
+        log.info(eventDto.toString());
+        var evenRequestKafkaDto = new EventRequestKafkaDto(eventDto);
 
         sendMessage("event-stream", evenRequestKafkaDto);
-
-
 
     }
 
     private void sendMessage(String topicName, EventHttpRequestDto eventDto) {
         var jsonEventDto = mutateToJson(eventDto);
         kafkaTemplate.send(topicName, jsonEventDto);
-        log.info(jsonEventDto + " has been sent");
+        log.info("!!!!!!!!!!!!!!!!!!!"+jsonEventDto + " !!!!!!!!!!!!!!!!!!");
     }
 
     private String mutateToJson(EventHttpRequestDto eventDto){

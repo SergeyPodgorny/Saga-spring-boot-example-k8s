@@ -1,9 +1,6 @@
 package org.consumer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 
@@ -11,6 +8,7 @@ import java.time.ZonedDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class EventRequestKafkaDto {
     private String variousPayload;
     private Boolean isTransactionalFailing;

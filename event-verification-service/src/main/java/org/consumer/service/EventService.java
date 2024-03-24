@@ -24,14 +24,11 @@ public class EventService {
 
         EventRequestKafkaDto restoredObject;
 
-        try{
+        try {
             restoredObject = objectMapper.readValue(event, EventRequestKafkaDto.class);
             log.info(restoredObject.toString());
-        } catch( JsonProcessingException e){
-            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
-
     }
-
-
 }
