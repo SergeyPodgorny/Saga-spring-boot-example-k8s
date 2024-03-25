@@ -1,6 +1,5 @@
 package org.producer.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.producer.dto.EventHttpRequestDto;
@@ -10,25 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 
 @Service
 @Slf4j
 public class EventService {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, EventRequestKafkaDto> kafkaTemplate;
     private final EventRepository eventRepository;
-    private final ObjectMapper objectMapper;
-
     @Autowired
-    public EventService(KafkaTemplate<String, String> kafkaTemplate, EventRepository eventRepository, ObjectMapper objectMapper) {
+    public EventService(KafkaTemplate<String, EventRequestKafkaDto> kafkaTemplate, EventRepository eventRepository) {
         this.kafkaTemplate = kafkaTemplate;
         this.eventRepository = eventRepository;
-        this.objectMapper = objectMapper;
     }
 
     public void processEvent(EventHttpRequestDto eventDto){
-        log.info(eventDto.toString());
         var evenRequestKafkaDto = new EventRequestKafkaDto(eventDto);
 
         sendMessage("event-stream", evenRequestKafkaDto);
@@ -36,18 +30,10 @@ public class EventService {
     }
 
     private void sendMessage(String topicName, EventHttpRequestDto eventDto) {
-        var jsonEventDto = mutateToJson(eventDto);
-        kafkaTemplate.send(topicName, jsonEventDto);
-        log.info("!!!!!!!!!!!!!!!!!!!"+jsonEventDto + " !!!!!!!!!!!!!!!!!!");
+        kafkaTemplate.send(topicName, new EventRequestKafkaDto(eventDto));
+        log.info("Message with payload: "+eventDto+" has been sent");
     }
 
-    private String mutateToJson(EventHttpRequestDto eventDto){
-        try {
-            return objectMapper.writeValueAsString(eventDto);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
 
