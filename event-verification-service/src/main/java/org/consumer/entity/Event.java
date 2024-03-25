@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.consumer.dto.EventReceivedDto;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.ZonedDateTime;
@@ -16,7 +17,6 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Event {
 
@@ -25,10 +25,12 @@ public class Event {
     @GenericGenerator(name ="uuid", strategy ="uuid2")
     private String id;
     private String variousPayload;
-    private Boolean isTransactionalFailing;
     private String timeOfAttempt;
+    private String timeOfReceivingMessage;
 
-
-
-
+    public Event(EventReceivedDto dto) {
+        variousPayload = dto.getVariousPayload();
+        timeOfAttempt = dto.getTimeOfAttempt();
+        timeOfReceivingMessage = dto.getTimeOfReceivingMessage();
+    }
 }
