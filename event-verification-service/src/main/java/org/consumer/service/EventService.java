@@ -3,7 +3,7 @@ package org.consumer.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.consumer.configuration.exceptions.BusinessLogicException;
+import org.consumer.exceptions.BusinessLogicException;
 import org.consumer.dto.EventReceivedDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class EventService {
     private final EventSaveService eventSaveService;
     private final ObjectMapper objectMapper;
+
+
     @Autowired
     public EventService(EventSaveService eventSaveService, ObjectMapper objectMapper) {
         this.eventSaveService = eventSaveService;

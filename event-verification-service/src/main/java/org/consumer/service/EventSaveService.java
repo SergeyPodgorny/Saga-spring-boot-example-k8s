@@ -1,6 +1,6 @@
 package org.consumer.service;
 
-import org.consumer.configuration.exceptions.BusinessLogicException;
+import org.consumer.exceptions.BusinessLogicException;
 import org.consumer.dto.EventReceivedDto;
 import org.consumer.entity.Event;
 import org.consumer.repository.EventRepository;
