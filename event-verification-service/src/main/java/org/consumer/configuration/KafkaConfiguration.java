@@ -4,7 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.consumer.dto.EventReceivedDto;
+import org.consumer.dto.EventSentDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class KafkaConfiguration {
     private String kafkaAddress;
 
     @Bean
-    public ProducerFactory<String, EventReceivedDto> producerFactory(){
+    public ProducerFactory<String, EventSentDto> producerFactory(){
         Map<String,Object> kafkaConfig = new HashMap<>();
         kafkaConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaAddress);
         kafkaConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -33,7 +33,7 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, EventReceivedDto> kafkaTemplate(){
+    public KafkaTemplate<String, EventSentDto> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
 
