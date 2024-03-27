@@ -28,8 +28,8 @@ public class EventSaveService {
 
         eventRepository.saveAndFlush(new Event(event));
 
-        if(!event.getIsTransactionalFailing()){
-            throw new BusinessLogicException("Bad event has been received, rolling back transaction in event verification service");
+        if(event.getIsTransactionalFailing()){
+            throw new BusinessLogicException();
         }
     }
 }

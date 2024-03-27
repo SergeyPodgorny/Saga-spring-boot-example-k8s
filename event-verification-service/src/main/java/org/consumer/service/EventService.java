@@ -19,23 +19,23 @@ public class EventService {
         this.eventSaveService = eventSaveService;
         this.objectMapper = objectMapper;
     }
-
+    private EventReceivedDto restoredObject;
     @KafkaListener(topics = "event-stream", groupId = "events")
     public void eventMessageListener(String event)  {
 
-        EventReceivedDto restoredObject;
+
         log.info(event);
         try {
             restoredObject = objectMapper.readValue(event, EventReceivedDto.class);
             log.info(restoredObject.toString());
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            log.error("Failed to deserialize event: "+ event);
         }
 
         try {
             eventSaveService.saveEvent(restoredObject);
         } catch (BusinessLogicException e) {
-            throw new RuntimeException(e);
+            log.error("A business exception has been occurred");
         }
 
     }
