@@ -23,11 +23,8 @@ public class EventService {
     @KafkaListener(topics = "event-stream", groupId = "events")
     public void eventMessageListener(String event)  {
 
-
-        log.info(event);
         try {
             restoredObject = objectMapper.readValue(event, EventReceivedDto.class);
-            log.info(restoredObject.toString());
         } catch (JsonProcessingException e) {
             log.error("Failed to deserialize event: "+ event);
         }
